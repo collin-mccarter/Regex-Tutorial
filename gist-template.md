@@ -1,26 +1,25 @@
-# Title (replace with your title)
+# Looking at the Regex for Matching URLs
 
-Introductory paragraph (replace this with your text)
+In the world of regular expressions (regex), there is one pattern that stands out for its versatility and practicality: the regex for matching URLs. This regex expression allows us to validate and extract various components of a URL, such as the protocol, domain name, top-level domain, and additional paths or query strings. By understanding the different elements of this regex and their functionalities, we can gain insights into how it effectively handles URL matching. In this article, we will dive into the intricacies of this powerful regex, exploring anchors, quantifiers, grouping constructs, bracket expressions, character classes, the OR operator, flags, and character escapes, which collectively form the URL matching pattern.
 
 ## Summary
-
-Briefly summarize the regular expression you will be describing and what you will explain. Include a code snippet of the regex. Replace this text with your summary.
-
 The regular expression (regex) that I will be describing is the regex of matching a URL. Components of the regex that will be further elaborated on will be the anchors, quantifiers, grouping constructs, bracket expressions, character classes, The OR operator, flags, and character escapes.
 
-The regex is as follows: `/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`
+The regex is as follows: `/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/`. 
 
-* `/` - Delimiters that indicate the start and end of the regular expression.
+* `/` - Indicate the start and end of the regular expression.
 * `^` - Matches the start of a line.
-* `(https?:\/\/)?` - This is an optional group that matches the protocol part of the URL (http:// or https://). The s? means the 's' character is optional, and :\/\/ matches the literal '://'.
-* `([\da-z\.-]+)` - This group matches the domain name part of the URL. It consists of one or more characters that can be alphanumeric (\d and a-z), dots (.), or hyphens (-).
+* `(https?:\/\/)?` - Matches the protocol part of the URL (http:// or https://). 
+    * The s? means the 's' character is optional, and :\/\/ matches the literal '://'.
+* `([\da-z\.-]+)` - This group matches the domain name part of the URL. It consists of one or more characters that can be alphanumeric, dots, or hyphens.
 * `\.` - Matches the literal dot in the domain name.
-* `([a-z\.]{2,6})` - This group matches the top-level domain (TLD) part of the URL. It consists of two to six lowercase letters (a-z) or dots (.). This range covers most common TLDs like .com, .org, .net, etc.
-* `([\/\w \.-]*)` - This group matches any additional path or query string in the URL. It can contain forward slashes (\/), word characters (\w), spaces ( ), dots (.), or hyphens (-). The * means zero or more occurrences of these characters.
-* `-` Matches zero or more occurrences of the previous group.
-* `\/?` - Matches an optional trailing slash at the end of the URL.
-* `$` - Matches the end of a line.
-* `/` - Delimiters that indicate the end of the regular expression.
+* `([a-z\.]{2,6})` - This group matches the top-level domain part of the URL. It consists of two to six lowercase letters or dots. 
+    * This range covers most common domains like .com, .org, .net, etc.
+* `([\/\w \.-]*)` - Matches any additional path or query string in the URL. It can contain forward slashes, word characters, spaces, dots, or hyphens. The * means zero or more occurrences of these characters.
+* `*` - Matches zero or more occurrences of the previous group.
+* `\/?` - Optional trailing slash at the end of the URL.
+* `$` - Is the end of a line.
+* `/` - Indicates the end of the regular expression.
 
 ## Table of Contents
 
@@ -70,12 +69,12 @@ A way to check multiple parts of a string to determine different sections fulfil
 
 The most common way you group a section of a regex is by using parentheses (). Each section within parentheses is known as a subexpression which look for an exact match unless they're told to do otherwise.
 
-Looking at the `(https?:\/\/)` part f=of the equation, the parentheses start the grouping. `?:` Is a non capturing group which means it looks for the character sequence that does not repeat or used again. 
+Looking at the `(https?:\/\/)` part of the equation, the parentheses start the grouping. `?:` Is a non capturing group which means it looks for the character sequence that does not repeat or used again. 
 
 ### Character Classes
 Character classes define a set of characters that are used to fulfill a match. 
 
-Some of the more common character classes are :
+Common character classes are :
 * . — Matches any character except the newline character (\n)
 * \d — Matches any numeral digit which is the same as typing [0-9].
 * \w — Matches any alphanumeric character including the underscore (_). 
@@ -83,12 +82,13 @@ Some of the more common character classes are :
 * \s — Matches a single whitespace character, including tabs and line breaks
 
 ### The OR Operator
-Using the OR operator (|), the expression [abc] could be written as (a|b|c). 
 
-Using our example in the grouping constructs section, we can take the original expression: (abc):(xyz) And then use the OR operator to convert it to the following: (a|b|c):(x|y|z) Now, both of the strings "abc:xyz" and "acb:xyz" would match, as well as "a:z", but "xyz:abc" would not.
+In a regular expression (regex), the OR operator is represented by the pipe symbol (|). The OR operator allows you to specify multiple alternatives for matching. The OR operator allows you to create more flexible patterns by providing alternatives for matching. It's important that the OR operator has precedence over other regex operators, so you may need to use parentheses to group expressions properly if needed.
+
+Using the OR operator (|), the expression [abc] could be written as (a|b|c).
 
 ### Flags
-Flags are placed at the end of a regex, after the second slash and they define additional functionality or limits for the regex. 
+Flags in a regular expression are optional modifiers that can be added to the end of a regex pattern to change its behavior. They modify how the pattern is matched or searched within a given string. Flags are typically represented as single characters, and they are case-insensitive. Flags are placed at the end of a regex, after the second slash and they define additional functionality or limits for the regex. 
 
 The three most common flags are:
 * g — Global search: the regex should be tested against all possible matches in a string.
@@ -96,10 +96,11 @@ The three most common flags are:
 * m — Multi-line search: a multi-line input string should be treated as multiple lines
 
 ### Character Escapes
-The backslash (\) in a regex escapes a character that otherwise would be interpreted literally. For example, the open curly brace ({) is used to begin a quantifier, but adding a backslash before the open curly brace (\{) means that the regex should look for the open curly brace character instead of beginning to define a quantifier. This is common when looking for strings with special characters that are the same as a particular component of a regex.
+Character escapes are special sequences that allow you to match specific characters or character classes. They are denoted by a backslash \ followed by a character or sequence. Character escapes provide a way to represent characters that have special meaning in regex or to match characters that are difficult to type directly. By using character escapes, you can match specific characters or define character classes in your regex patterns to achieve more precise matching.
 
-It's important to note that all special characters, including the backslash (\), lose their special significance inside bracket expressions.
+For example, the open curly brace ({) is used to begin a quantifier, but adding a backslash before the open curly brace (\{) means that the regex should look for the open curly brace character instead of beginning to define a quantifier. This is common when looking for strings with special characters that are the same as a particular component of a regex.
 
 ## Author
+Collin McCarter is a full stack web development student who wrote this article as a part of exploring computer science for JavaScript. 
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+Github Profile: https://github.com/collin-mccarter

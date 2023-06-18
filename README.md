@@ -42,7 +42,7 @@ Before you get started, watch this [introduction to regular expressions video](h
 
 Once you have a better understanding of what these different parts of a regular expression do, you’ll need to explain what they do for a specific regex.
 
-You can choose one of the following regular expressions or you can choose one that you found on your own (with the exception of the one that is covered in the [Regex Tutorial: Matching a Username](https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial):
+You can choose one of the following regular expressions or you can choose one that you found on your own (with the exception of the one that is covered in the [Regex Tutorial: Matching a Username](https://coding-boot-camp.github.io/full-stack/computer-science/regex-tutorial)):
 
 * Matching a Hex Value: `/^#?([a-f0-9]{6}|[a-f0-9]{3})$/`
 
